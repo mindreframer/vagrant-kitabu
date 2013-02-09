@@ -6,8 +6,10 @@ class princexml{
 }
 
 class princexml::dependencies{
-  package{"wget":}
+  if ! defined(Package['wget'])    { package { 'wget': ensure => installed } }
 }
+
+
 
 class princexml::download{
   exec{"princexml::download":
