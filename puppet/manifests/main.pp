@@ -14,4 +14,5 @@ class{'basic':
 -> class{"princexml":}
 -> class{"kindlegen":}
 -> class{"html2text":}
+-> class{"pygments_rb":}
 -> class{"kitabu": }
