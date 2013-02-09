@@ -7,10 +7,6 @@ class princexml{
 
 class princexml::dependencies{
   package{"wget":}
-  # -> package{"libgif4":}
-  # -> package{"libjpeg-turbo8":}
-  # -> package{"libjpeg8":}
-  # -> package{"libtiff4":}
 }
 
 class princexml::download{
@@ -19,11 +15,20 @@ class princexml::download{
     cwd     => "/tmp",
     unless  => "test -e /tmp/${princexml::params::filename}"
   }
+
+  -> exec{"princexml::decompress":
+    command => "tar xvfz /tmp/${princexml::params::filename}",
+    unless  => "test -e /tmp/${princexml::params::folder}"
+  }
+  -> file{"/tmp/${princexml::params::folder}/install.sh":
+    content => template("princexml/install.sh.erb"),
+    mode    => 755
+  }
 }
 
 class princexml::install{
   exec{"princexml::install":
-    command => "dpkg -i /tmp/${princexml::params::filename}",
-    unless  => "dpkg -l |grep princexml"
+    command => "/tmp/$princexml::params::folder/install.sh",
+    unless  => "test -e /usr/local/bin/prince"
   }
 }

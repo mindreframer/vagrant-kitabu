@@ -1,5 +1,5 @@
 class princexml::params{
-  $package  = "prince_8.1-4_ubuntu12.04_amd64"
-  $filename = "$package.deb"
+  $folder   = "prince-8.1r4-linux-amd64-static"
+  $filename = "$folder.tar.gz"
   $url      = "http://www.princexml.com/download/$filename"
 }
