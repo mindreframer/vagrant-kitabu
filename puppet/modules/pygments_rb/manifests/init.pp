@@ -1,3 +1,4 @@
 class pygments_rb{
-  package{"pygments.rb": provider => "gem"}
+  package{"python-pygments": }
+  -> package{"pygments.rb": provider => "gem"}
 }
