@@ -11,4 +11,5 @@ class{'basic':
   stage => first
 }
 
+-> class{"princexml":}
 -> class{"kitabu": }
