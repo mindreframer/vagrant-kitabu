@@ -10,3 +10,5 @@ import 'nodes.pp'
 class{'basic':
   stage => first
 }
+
+-> class{"kitabu": }
