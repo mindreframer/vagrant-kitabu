@@ -12,4 +12,5 @@ class{'basic':
 }
 
 -> class{"princexml":}
+-> class{"kindlegen":}
 -> class{"kitabu": }
