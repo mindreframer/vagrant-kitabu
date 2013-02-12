@@ -13,6 +13,8 @@ if [ ! -x $GIT ]; then
         yum -q -y install git
     elif [ -x $APT_GET ]; then
         apt-get -q -y install git
+        # sometimes the package name is different
+        apt-get -q -y install git-core
     else
         echo "No package installer available. You may need to install git manually."
     fi
