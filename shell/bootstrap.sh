@@ -20,12 +20,6 @@ if [ ! -x $GIT ]; then
     fi
 fi
 
-if [ `gem query --local | grep librarian-puppet | wc -l` -eq 0 ]; then
-  gem install librarian-puppet
-  cd $PUPPET_DIR && librarian-puppet install --clean
-else
-  cd $PUPPET_DIR && librarian-puppet update
-fi
 
 # now we run puppet
 puppet apply -vv  --modulepath=$PUPPET_DIR/modules/ $PUPPET_DIR/manifests/main.pp
