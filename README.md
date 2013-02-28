@@ -3,18 +3,80 @@
 ## Problem
 Installing Kitabu to write ebooks involves some manual configuration. Let's automate it! )
 
+This [Vagrant] script will install for you:
+
+  - [Kitabu]
+  - [HTML2Text]
+  - [Kindlegen]
+  - [Pygments.rb]
+  - [PrinceXML]
+
 
 ## How to use
 
-This repository is really just a template; copy the relevant files into your
-own project. Here's a breakdown of what's required:
+    $ git clone git://github.com/mindreframer/vagrant-kitabu.git
+    $ cd vagrant-kitabu
+    $ vagrant up
+    $ ... make a tea, while your digital Gutenberg Printing Press is getting ready...
 
-* `Vagrantfile` with simple shell provisioner definition
-* `shell/bootstrap.sh` - a simple shell provisioner to install and run Librarian-puppet and also Puppet
-* `puppet/Puppetfile` - configuration describing what Puppet modules to install. See the
-[Librarian-puppet](https://github.com/rodjek/librarian-puppet) project for details.
-* `puppet/manifests/main.pp` - your main Puppet manifest.
-* `puppet/.gitignore` - configured to ignore temporary directories and files created by Librarian-puppet.
+    # login into your fresh VM
+    $ vagrant ssh
+
+
+    # check depencies
+    $ kitabu check
+
+      Prince XML: Converts HTML files into PDF files.
+      Installed.
+
+      KindleGen: Converts ePub e-books into .mobi files.
+      Installed.
+
+      html2text: Converts HTML documents into plain text.
+      Installed.
+
+      pygments.rb: A generic syntax highlight. If installed, replaces CodeRay.
+      Installed.
+
+    # now go to shared vagrant folder
+    $ cd /vagrant
+    # create a folder for your books
+    $ mkdir ebooks
+    $ cd ebooks
+
+    # create the basic template
+    $ kitabu new my-new-bestseller
+      create  templates/html/layout.erb
+      create  templates/html/layout.css
+      create  templates/html/user.css
+      create  templates/html/syntax.css
+      create  templates/epub/cover.erb
+      create  templates/epub/user.css
+      create  templates/epub/page.erb
+      create  templates/epub/cover.png
+      create  text/01_Welcome.md
+      create  config/kitabu.yml
+      create  config/helper.rb
+      create  output
+      create  images
+      create  code
+      create  .gitignore
+      create  output/.gitkeep
+      create  images/.gitkeep
+      create  code/.gitkeep
+      create  Guardfile
+
+    $ cd my-new-bestseller
+    $ kitabu export
+      ** e-book has been exported
+
+    # now take a look on your HOST system!
+    $ ls vagrant-kitabu/ebooks/my-new-bestseller/output
+      my-new-bestseller.epub     my-new-bestseller.mobi     my-new-bestseller.pdf.html tmp
+      my-new-bestseller.html     my-new-bestseller.pdf      my-new-bestseller.txt
+
+    $ start writing! Good luck!
+
 
 ## Contribute
 
@@ -29,6 +91,10 @@ Please raise issues via the github issue tracker.
 Please see the [LICENSE](https://github.com/mindreframer/vagrant-kitabu/blob/master/LICENSE)
 file.
 
-
+[Kitabu]: https://github.com/fnando/kitabu
+[HTML2Text]: https://github.com/aaronsw/html2text
+[Kindlegen]: http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211
+[Pygments.rb]: https://github.com/tmm1/pygments.rb
+[PrinceXML]: http://princexml.com
 [Vagrant]: http://vagrantup.com
 [Puppet]: http://puppetlabs.com
