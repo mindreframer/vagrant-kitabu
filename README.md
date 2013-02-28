@@ -11,6 +11,7 @@ This [Vagrant] script will install for you:
   - [Pygments.rb]
   - [PrinceXML]
 
+Everything nicely packaged on a sandbox system, so you don't have to manually install anything on your precious system!
 
 ## How to use
 
